@@ -1,0 +1,12 @@
+<div class="book">
+  <p class="title"> <%= @blog.blogname %> </p>
+</div>
+
+<div class="reviews">
+  <% @posts.each do |post| %>
+    <div class="review">
+      <p class="author"> <%= post.title %> </p>
+      <p> <%= post.text %> </p>
+    </div>
+  <% end %>
+</div>
