@@ -5,8 +5,20 @@
 <div class="reviews">
   <% @blogs.each do |blog| %>
     <div class="review">
-      <p class="author"> <%= blog.blogname %> </p>
+      <p class="author"> <%= link_to blog.blogname, blog %> </p>
     </div>
-    <%= link_to 'See all Posts', blog %>
+  <% end %>
+</div>
+
+<div class="reviews">
+  <%= form_with scope: :blog, url: blogs_path, local: true do |f| %>  
+    <div class="field"> 
+      <%= f.label :Blog %><br> 
+      <%= f.text_field :blogname %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+    </div> 
+    <div class="actions"> 
+      <%= f.submit "Create" %> 
+    </div> 
   <% end %>
 </div>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     def index
+        @new_blog = Blog.new
         @users = User.all
     end
 
