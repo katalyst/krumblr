@@ -54,7 +54,7 @@ of features implemented well goes a long way.
 
 ## Setup
 
-* Fork this repo. Keep the repo public, too.
+* Fork this repo. Keep the forked repo public, too.
 * Code your app.
 * Commit your changes (frequent commits are good; separate branches for
   different features are also good).
