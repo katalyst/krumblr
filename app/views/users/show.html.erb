@@ -2,7 +2,11 @@
   <h1>Your blogs</h1>
   <% @blogs.each do |blog| %>
     <div class="card" style="margin-bottom :10px">
-      <h2> <%= link_to blog.blogname, blog %> </h2>
+      <h2> 
+        <%= link_to blog.blogname, blog, :class => "blog-card" %> 
+        <%= link_to image_tag("delete.png", :class => "delete-img"), blog, method: "delete" %>
+        <!-- <%= link_to image_tag("edit.svg", :class => "edit-img"), blog, method: "update" %> -->
+      </h2>
     </div>
   <% end %>
 </div>

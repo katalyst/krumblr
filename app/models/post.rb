@@ -2,5 +2,5 @@ class Post < ApplicationRecord
     extend FriendlyId
     friendly_id :title, use: :slugged
     belongs_to :blog
-    has_many :comments
+    has_many :comments, :dependent => :destroy
 end

@@ -21,6 +21,12 @@ class PostsController < ApplicationController
         end
     end
 
+    def destroy
+        Post.friendly.destroy(params[:id])
+        flash[:success] = "Post deleted"
+        redirect_back(fallback_location: root_path)
+    end
+
     private
     def post_params
         params.require(:post).permit(:title, :text, :blog_id)

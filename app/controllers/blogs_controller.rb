@@ -23,6 +23,16 @@ class BlogsController < ApplicationController
         end
     end
 
+    def update
+        
+    end    
+
+    def destroy
+        Blog.friendly.destroy(params[:id])
+        flash[:success] = "Blog deleted"
+        redirect_back(fallback_location: root_path)
+    end
+
     private
     def blog_params
         params.require(:blog).permit(:blogname, :user_id)

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             redirect_to '/'
         else
             flash[:error] = "Failed to log in"
-            redirect_to 'login'
+            redirect_to '/login'
         end 
     end
 

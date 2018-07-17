@@ -14,8 +14,8 @@
   </head>
 
   <body>
-    <div class="header">
-      <p class="banner"><%= link_to "Krumblr", '/' %><p>
+    <div class="header banner">
+      <p><%= link_to "Krumblr", '/' %><p>
       <% if current_user %> 
           <p><%= link_to image_tag("logout.png", :class => "banner pull-right"), logout_path, method: "delete" %></p>
           <h1>Hi <%= current_user.first_name %>!</h1>
