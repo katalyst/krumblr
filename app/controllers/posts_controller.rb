@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    # Added before_action to restrict app access until after successful login
     before_action :require_user, only: [:index, :show]
 
     def index
@@ -8,8 +9,6 @@ class PostsController < ApplicationController
     def show
         @post = Post.friendly.find(params[:id])
         @comments = @post.comments   
-        @parent_blog = Blog.friendly.find(@post.blog_id)
-        @parent_user = User.friendly.find(@parent_blog.user_id)
     end
 
     def create

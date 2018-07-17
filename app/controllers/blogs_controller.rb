@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+    # Added before_action to restrict app access until after successful login
     before_action :require_user, only: [:index, :show]
 
     def show

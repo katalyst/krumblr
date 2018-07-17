@@ -1,3 +1,4 @@
+<!-- Added for search functionality -->
 <div>
   <%= form_tag(posts_path, method: 'get', class: 'navbar-form navbar-right') do %>
     <%= search_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search posts' %>
@@ -5,6 +6,7 @@
   <% end %>
 </div>
 
+<!-- Added to show all posts in a blog -->
 <div>
   </br><h1>Posts</h1></br>
   <% @posts.each do |post| %>
@@ -18,6 +20,7 @@
   <% end %>
 </div>
 
+<!-- Added to allow only blog owner to make new posts -->
 <div style="margin-top: 40px">
   <% if @blog.user_id == current_user.id %>
     <button id="showFormButton" class="btn btn-primary btn-lg">Start a new post</button>
