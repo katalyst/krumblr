@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
     before_action :require_user, only: [:index, :show]
 
+    def index
+        @matching_posts = Post.search(params[:term])
+    end
+
     def show
         @post = Post.friendly.find(params[:id])
         @comments = @post.comments   
@@ -10,8 +14,6 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-        # @blog.user_id = $user_id
-        # abort @blog.inspect
         if @post.save! 
             flash[:success] = "New post created!"
             redirect_back(fallback_location: root_path) 

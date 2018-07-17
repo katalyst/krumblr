@@ -1,0 +1,9 @@
+<div>
+  </br><h1>Matched posts</h1></br>
+  <% @matching_posts.each do |post| %>
+    <div class="card" style="margin-bottom :10px">
+        <h2><%= link_to post.title, post, :class => "post-card" %>
+      </h2>
+    </div>
+  <% end %>
+</div>

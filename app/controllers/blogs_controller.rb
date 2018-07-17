@@ -12,8 +12,6 @@ class BlogsController < ApplicationController
     
     def create
         @blog = Blog.new(blog_params)
-        # @blog.user_id = $user_id
-        # abort @blog.inspect
         if @blog.save! 
             flash[:success] = "New blog created!"
             redirect_back(fallback_location: root_path) 

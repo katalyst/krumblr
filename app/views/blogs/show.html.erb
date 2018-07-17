@@ -1,9 +1,18 @@
 <div>
-  <h1>Posts</h1>
+  <%= form_tag(posts_path, method: 'get', class: 'navbar-form navbar-right') do %>
+    <%= search_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search posts' %>
+    <%= submit_tag "Search", name: nil, class: 'btn btn-primary btn-lg', :name => nil %>
+  <% end %>
+</div>
+
+<div>
+  </br><h1>Posts</h1></br>
   <% @posts.each do |post| %>
     <div class="card" style="margin-bottom :10px">
         <h2><%= link_to post.title, post, :class => "post-card" %>
-        <%= link_to image_tag("delete.png", :class => "delete-img"), post, method: "delete" %>
+        <% if @blog.user_id == current_user.id %>
+          <%= link_to image_tag("delete.png", :class => "delete-img"), post, method: "delete" %>
+        <% end %>
       </h2>
     </div>
   <% end %>
