@@ -1,7 +1,13 @@
 class BlogsController < ApplicationController
+    before_action :require_user, only: [:index, :show]
+
     def show
-        @blog = Blog.find(params[:id])
+        @blog = Blog.friendly.find(params[:id])
         @posts = @blog.posts
+    end
+
+    def index
+        @blogs = Blog.all
     end
     
     def create

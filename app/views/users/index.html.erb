@@ -1,4 +1,10 @@
-<% @users.each do |user| %>
-    <p> <%= user.username %> </p>
-    <%= link_to 'See all Blogs', user %>
-<% end %>
+<div class="container">
+    <div class="card" style="margin-bottom :10px">
+    <h1><%= link_to 'See your Blogs', @user %></h1>
+    </div>
+
+
+<div class="card">
+    <h1><%= link_to 'See all Blogs', blogs_url %></h1>
+</div>
+</div>

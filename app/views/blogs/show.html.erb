@@ -1,25 +1,26 @@
-<div class="book">
-  <p class="title"> <%= @blog.blogname %> </p>
-</div>
-
-<div class="reviews">
+<div>
   <% @posts.each do |post| %>
-    <div class="review">
-      <%= link_to post.title, post %>
+    <div class="card">
+      <h2><%= link_to post.title, post %></h2>
     </div>
   <% end %>
 </div>
 
-<div class="reviews">
-  <%= form_with scope: :post, url: posts_path, local: true do |f| %>  
-    <div class="field"> 
-      <%= f.label :Post %><br> 
-      <%= f.text_field :title %>
-      <%= f.text_area :text %>
+<div style="margin-top: 40px">
+  <% if @blog.user_id == current_user.id %>
+    <button id="showFormButton" class="btn btn-primary btn-lg">Start a new post</button>
+  <% end %>
+</div>
+
+<div id="showFormDiv" style="display:none">
+  <%= bootstrap_form_with scope: :post, url: posts_path, local: true do |f| %>  
+    <div> 
+      <%= f.text_field :title, :placeholder => "Name your post", :hide_label => "true", :class => "input-small" %>
+      <%= f.text_area :text, :placeholder => "Enter your post here", :hide_label => "true", :class => "input-large" %>
       <%= f.hidden_field :blog_id, value: @blog.id %>
     </div> 
     <div class="actions"> 
-      <%= f.submit "Create" %> 
+      <%= f.submit "Post" %> 
     </div> 
   <% end %>
 </div>

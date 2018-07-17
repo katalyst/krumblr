@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
+    before_action :require_user, only: [:index, :show]
+
     def show
-        @post = Post.find(params[:id])
+        @post = Post.friendly.find(params[:id])
+        @comments = @post.comments   
+        @parent_blog = Blog.friendly.find(@post.blog_id)
+        @parent_user = User.friendly.find(@parent_blog.user_id)
     end
 
     def create

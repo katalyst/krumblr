@@ -10,63 +10,173 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+								 
  *= require_tree .
  *= require_self
  */
 
 @import 'bootstrap';
-
-.container {
-    width: 500px
+html,
+body {
+  background: rgb(255, 255, 255);
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
-p {
-    margin: 3px 0;
+.container {
+  padding: 0;
+  width: 100%;
+}
+
+.banner {
+  background: #cccbcb;
+}
+
+/* HEADER */
+
+.pull-right {
+  position: inline;
+  margin: 20px 20px 0 0;
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+  text-align: center
+}
+
+.header p a {
+  font-size: 70px;
+}
+
+.header p a:hover {
+  color: #c91717;
+  text-decoration: none;
 }
 
 .header h1 {
-    font-family: 'Domine', serif;
-    margin: 50px 0 30px 0;
+  text-align: left;
 }
 
-/* Book */
-
-.book {
-    margin: 10px 0;
-    border-top: 1px solid #ccc;
-    padding: 6px 0;
+.header ul {
+  list-style-position: none;
+  padding: 0;
 }
 
-.rank-this-week {
-    font-size: 23px;
+.header li {
+  display: inline;
+  margin: 30px;
+  font-size: 30px;
 }
 
-.title {
-    text-transform: uppercase;
-    font-size: 17px;
-    font-weight: bold;
+.header img {
+  margin: 0 20px 0 0;
+  height: 30px;
+  width: 30px;
 }
 
-.book .author,
-.publisher,
-.description,
-a {
-    font-family: 'Libre Baskerville', serif;
+.header a {
+  color: #000;
+  font-size: 30px;
+  text-decoration: none;
 }
 
-/* Review */
-
-.review {
-    padding: 10px 0;
-    border-top: 1px solid #ccc;
+.header a:hover {
+  color: #c91717;
+  text-decoration: none;
 }
 
-.review .author {
-    font-weight: bold;
+/* FORM PAGES */
+
+.form {
+  text-align: center;
+  margin: 0 auto 10px;
+  padding: 20px 0 10px 0;
+  font-size: 16px;
+  width: 300px;
 }
 
-.comment {
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    padding: 10px;
+input[type=text],
+input[type=email],
+input[type=password] {
+  color: #666666;
+  width: 100%;
+  border: 1px solid #E6E6E6;
+  border-radius: 0px;
+  height: 60px;
+  margin: 6px auto;
+  text-indent: 10px;
+}
+
+#post_title {
+  height: 40px;
+}
+
+#post_text {
+  height: 400px;
+}
+
+.btn-submit {
+  color: #FFFFFF;
+  font-size: 18px;
+  text-transform: uppercase;
+  background: #c91717;
+  padding: 10px 20px;
+  border: 0;
+  margin-top: 6px;
+}
+
+.post_title,
+.comments {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 2rem;
+}
+
+h7 {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+/*  RESPONSIVE */
+
+@media screen and (max-width: 992px) {
+  .img-container img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .pull-right {
+    background-color: #f1f2f2;
+    position: relative;
+    margin: 0;
+    width: 100%;
+  }
+  .pull-right ul {
+    margin: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-before: 0;
+    -webkit-padding-start: 0;
+  }
+  .pull-right ul li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    width: 50%;
+  }
+  .pull-right ul li a {
+    display: block;
+    width: 100%;
+  }
+  .img-container {
+    height: 200px;
+  }
 }

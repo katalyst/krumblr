@@ -1,0 +1,8 @@
+<div class="container">
+<h1>All blogs</h1>
+<% @blogs.each do |blog| %>
+    <div class="card" style="margin-bottom :10px">
+    <h2><%= link_to blog.blogname, blog %></h2>
+    </div>
+<% end %>
+</div>
