@@ -51,6 +51,13 @@ of features implemented well goes a long way.
   immediately obvious.
 * You can change the `.ruby-version` if required; the minimum required version
   is `2.4.1` for Rails 5.2.
+* For junior candidates with no prior Rails experience, we will primarily be assessing
+  your ability to learn over the course of the challenge.
+* For senior candidates, we'd like to be able to assess your problem solving
+  skills, not just your rails knowledge. If you wish to tackle a different extra
+  feature that might better prove your ability to problem solve, you're welcome to discuss
+  it with us.
+
 
 ## Setup
 
