@@ -40,6 +40,17 @@ of features implemented well goes a long way.
 
 * You're welcome to use gems for various features; we're interested in how you
   solve problems though, so maybe don't use them for everything.
+
+  For Katalyst projects, we regularly use
+  * [`Devise`](https://github.com/plataformatec/devise)
+    (including [`OmniAuth`](https://github.com/omniauth/omniauth));
+  * [`SimpleForm`](https://github.com/plataformatec/simple_form); and
+  * [`FriendlyId`](https://github.com/norman/friendly_id)
+
+  so you're welcome to include any or all of these in your project. Of course,
+  you're always free to use something different or roll your own option if you
+  prefer. Let us know either directly or in comments the reasons for your
+  choices! We always want to learn new things, too.
 * You're welcome to include a CSS framework (or style it from scratch) to
   you're liking, but again, it's about the approach to problem solving. UI
   is part of that, but it doesn't have to be the main focus.
