@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   root "dashboard#index"
 
+
+  resources :blogs, only: [] do
+    resources :posts, only: [:index, :show, :new, :create]
+  end
 end
