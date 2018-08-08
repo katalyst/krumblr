@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
 
   resources :blogs, only: [] do
-    resources :posts, only: [:index, :show, :new, :create]
+    resources :posts
   end
 end

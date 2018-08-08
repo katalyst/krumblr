@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def flash_messages
-    flash_keys = [:success, :success, :info, :info, :warning, :warning, :error]
+    flash_keys = [:success, :info, :warning, :error]
 
     capture_haml do
       flash_keys.each do |key|
