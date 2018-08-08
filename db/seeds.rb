@@ -9,11 +9,15 @@ text_content = [
   "Fusce commodo lacus id dui consectetur placerat. Nunc ut cursus erat, id blandit leo. Donec id diam ac enim semper tincidunt sed a nibh. Mauris volutpat metus ex. Nunc nisi massa, tristique vel lectus ac, fermentum condimentum justo. Aliquam eu quam arcu. Maecenas vel pulvinar ipsum. Aenean a aliquam eros."
 ]
 
-blog_names = ["My Awesome Blog", "Kumblr Official", "Regular Gnoll", "Cookie Monster"]
+blog_names = ["Kumblr Official", "Regular Gnoll", "Cookie Monster"]
 
 u1 = User.create(email: "sam@sam.com", password: "testpassword")
+u2 = User.create(email: "someone@else.com", password: "testpassword")
 
 (0..20).each do |i|
-  blog = Blog.where(name: blog_names[i % blog_names.count]).first_or_create
+  blog = Blog.where(name: "My Awesome Blog", user: u1).first_or_create
+  blog.posts.create(title: "Post #{i}", content: text_content[i % text_content.count])
+
+  blog = Blog.where(name: blog_names[i % blog_names.count], user: u2).first_or_create
   blog.posts.create(title: "Post #{i}", content: text_content[i % text_content.count])
 end

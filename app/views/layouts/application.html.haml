@@ -12,42 +12,39 @@
   %body
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       %a.navbar-brand{:href => root_path} Kumblr
+      .d-lg-none.ml-auto.mr-3
+        -if current_user && current_user.blogs.include?(@blog)
+          =link_to "+ new post", new_blog_post_path(@blog)
       %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
           %li.nav-item.active
             = blog_or_root_path @blog
-          - if @blog
-            %li.nav-item
-              =link_to "+ new post", new_blog_post_path(@blog), class: "nav-link"
-        .user.my-2.my-lg-0
           -if current_user
-            %span= current_user.email
-            =link_to "Sign Out", destroy_user_session_path, method: :delete
+            %li.nav-item.d-lg-none
+              =link_to "Sign Out (#{current_user.email})", destroy_user_session_path, method: :delete
           -else
-            =link_to "Sign In", new_user_session_path
+            %li.nav-item.d-lg-none
+              =link_to "Sign In", new_user_session_path
+      .user.d-none.d-lg-flex
+        %ul.navbar-nav
+          -if current_user && current_user.blogs.any?#&& current_user.blogs.include?(@blog)
+            %li.nav-item.mr-3.nav-link
+              =link_to "+ new post", new_blog_post_path(current_user.blogs.first)
+          -if current_user
+            %li.nav-item.dropdown
+              =link_to current_user.email, "#", class: "nav-link dropdown-toggle", id: "userNavDropdown", "role" => "button", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"
+              %div.dropdown-menu.px-2{"aria-labelledby"=>"userNavDropdown", style: "right: 0; left: auto"}
+                =link_to "Profile", "#todo"
+                .dropdown-divider
+                =link_to "Sign Out", destroy_user_session_path, method: :delete
+          -else
+            %li.nav-item
+              = link_to "Sign In", new_user_session_path
 
     .container.pt-3
-      -if flash[:success]
-        .alert.alert-success{role: "alert"}
-          =flash[:success]
-      -if flash[:info]
-        .alert.alert-info{role: "alert"}
-          =flash[:info]
-          = notice
-      -if flash[:warning]
-        .alert.alert-warning{role: "alert", style: "font-size: 1.1em"}
-          =flash[:warning]
-      -if flash[:error]
-        .alert.alert-danger{role: "alert"}
-          %strong=flash[:error_heading]
-          -if flash[:error].respond_to? :each
-            %ul
-              -flash[:error].flatten.each do |e|
-                %li= e
-          -else
-            =flash[:error]
+      = flash_messages
       = yield
     .footer
       .container.d-flex.justify-content-center.p-3

@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Katalyst regular gems
 gem 'devise'
 gem 'friendly_id', '~> 5.2.0'
-
+gem 'simple_form'
 
 gem 'haml'
 gem 'bootstrap', '~> 4.1.3'

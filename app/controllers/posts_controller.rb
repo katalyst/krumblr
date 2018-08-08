@@ -2,7 +2,7 @@ class PostsController < BlogsController
   before_action :require_user, except: [:index, :show]
   before_action :require_post, only: [:show, :update, :delete]
   def index
-    @posts = @blog.posts
+    @posts = @blog.posts.recent_first
   end
 
   def new
@@ -10,9 +10,14 @@ class PostsController < BlogsController
   end
 
   def create
-    @post = @blog.posts.create(create_post_params)
+    @post = @blog.posts.new(create_post_params)
 
-    render template: :show
+    if @post.save
+      flash[:success] = "Post Saved!"
+      render "show"
+    else
+      render "new"
+    end
   end
 
   def show
