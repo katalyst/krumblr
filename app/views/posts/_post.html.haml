@@ -1,3 +1,7 @@
-.post{id: post.id}
-  .post_title= post.title
-  .post_content= post.content
+.post-wrapper
+  .card{id: post.id}
+    .card-header.d-flex.justify-content-between
+      = link_to post.title, blog_post_path(@blog, post)
+      %span= timeago_tag post.updated_at
+    .card-body= post.content
+

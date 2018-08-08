@@ -1,0 +1,54 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+
+    %title Krumblr!
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      %a.navbar-brand{:href => root_path} Kumblr
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item.active
+            = blog_or_root_path @blog
+          - if @blog
+            %li.nav-item
+              =link_to "+ new post", new_blog_post_path(@blog), class: "nav-link"
+        .user.my-2.my-lg-0
+          -if current_user
+            %span= current_user.email
+            =link_to "Sign Out", destroy_user_session_path, method: :delete
+          -else
+            =link_to "Sign In", new_user_session_path
+
+    .container.pt-3
+      -if flash[:success]
+        .alert.alert-success{role: "alert"}
+          =flash[:success]
+      -if flash[:info]
+        .alert.alert-info{role: "alert"}
+          =flash[:info]
+          = notice
+      -if flash[:warning]
+        .alert.alert-warning{role: "alert", style: "font-size: 1.1em"}
+          =flash[:warning]
+      -if flash[:error]
+        .alert.alert-danger{role: "alert"}
+          %strong=flash[:error_heading]
+          -if flash[:error].respond_to? :each
+            %ul
+              -flash[:error].flatten.each do |e|
+                %li= e
+          -else
+            =flash[:error]
+      = yield
+    .footer
+      .container.d-flex.justify-content-center.p-3
+        %span Copyright Kumblr! etc 2019
