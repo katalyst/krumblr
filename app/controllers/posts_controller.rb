@@ -4,7 +4,7 @@ class PostsController < BlogsController
   before_action :require_post, except: [:index, :new, :create]
 
   def index
-    @posts = @blog.posts.recent_first.with_reactions
+    @posts = @blog.posts.recent_first.with_reactions.with_tags
   end
 
   def new
@@ -57,11 +57,11 @@ class PostsController < BlogsController
 
 protected
   def create_post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :tag_string)
   end
 
   def update_post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :tag_string)
   end
 
   def require_post

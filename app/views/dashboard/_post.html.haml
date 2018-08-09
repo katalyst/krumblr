@@ -6,5 +6,6 @@
     .card-body
       %h3= post.title
       = post.content
+      = render partial: "posts/post_tags", locals: {post: post}
     .card-footer
       = render partial: "posts/post_footer", locals: {post: post}

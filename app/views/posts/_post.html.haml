@@ -2,12 +2,13 @@
   .card{id: post.id}
     .card-header.d-flex.justify-content-between
       = link_to post.title, blog_post_path(post.blog, post)
-      %span= timeago_tag post.updated_at
+      .controls
+        %span= timeago_tag post.updated_at
+        -if current_user == post.blog.user
+          =link_to "Edit", edit_blog_post_path(post.blog, post), class: "mx-1 btn btn-outline-secondary"
+          =link_to "Delete", blog_post_path(post.blog, post), method: :delete, data: {confirm: "Are you sure? This cannot be undone"}, class: "mx-1 btn btn-outline-danger"
     .card-body
       = post.content
-      -if current_user == post.blog.user
-        .controls.d-flex.justify-content-end
-          =link_to "Edit", edit_blog_post_path(post.blog, post), class: "mx-2 btn btn-outline-secondary"
-          =link_to "Delete", blog_post_path(post.blog, post), method: :delete, data: {confirm: "Are you sure? This cannot be undone"}, class: "mx-2 btn btn-outline-danger"
+      = render partial: "post_tags", locals: {post: post}
     .card-footer
       =render partial: "post_footer", locals: {post: post}
