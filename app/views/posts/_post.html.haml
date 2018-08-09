@@ -9,6 +9,6 @@
           =link_to "Delete", blog_post_path(post.blog, post), method: :delete, data: {confirm: "Are you sure? This cannot be undone"}, class: "mx-1 btn btn-outline-danger"
     .card-body
       = post.content
-      = render partial: "post_tags", locals: {post: post}
+      = render partial: "posts/post_tags", locals: {post: post}
     .card-footer
-      =render partial: "post_footer", locals: {post: post}
+      =render partial: "posts/post_footer", locals: {post: post}

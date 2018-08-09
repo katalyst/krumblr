@@ -12,18 +12,21 @@
   %body
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       %a.navbar-brand{:href => root_path} Kumblr
-      .d-lg-none.ml-auto.mr-3
-        -if my_blogs.any?
-          =link_to "+ new post", new_blog_post_path(selected_blog)
       %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
-          %li.nav-item.active
-            = blog_or_root_path @blog
           -if current_user
+            - my_blogs.each do |blog|
+              -next if blog.new_record?
+              %li.nav-item.d-lg-none
+                =link_to blog.name, blog_select_path(blog), method: :post, class: "nav-item"
             %li.nav-item.d-lg-none
-              =link_to "Sign Out (#{current_user.email})", destroy_user_session_path, method: :delete
+              =link_to "+ new blog", new_blog_path, class: "nav-item"
+            %li.nav-item.d-lg-none
+              =current_user.email
+            %li.nav-item.d-lg-none
+              =link_to "Sign Out", destroy_user_session_path, method: :delete
           -else
             %li.nav-item.d-lg-none
               =link_to "Sign In", new_user_session_path
@@ -51,6 +54,10 @@
 
     .container.pt-3
       = flash_messages
+      .search.my-3
+        =form_tag search_path, method: :get, class: "form-inline d-flex" do
+          %input.form-control.mr-sm-2.flex-grow-1{"aria-label" => "Search", :placeholder => "Search Kumblr", :type => "search", name: "query"}/
+          %button.form-control.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
       = yield
     .footer
       .container.d-flex.justify-content-center.p-3

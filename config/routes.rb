@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       post "react"
     end
   end
+
+  get "search", to: "search#index", as: "search"
 end

@@ -2,7 +2,8 @@
   .card{id: post.id}
     .card-header.d-flex.justify-content-between.flex-xs-row.flex-xl-column
       = link_to post.blog.name, blog_posts_path(post.blog)
-      %span= timeago_tag post.updated_at
+      = link_to blog_post_path(post.blog, post) do
+        = timeago_tag post.updated_at
     .card-body
       %h3= post.title
       = post.content

@@ -22,9 +22,5 @@
   @include media-breakpoint-up(lg) {
     column-count: 3;
   }
-
-  @include media-breakpoint-up(xl) {
-    column-count: 4;
-  }
 }
 
