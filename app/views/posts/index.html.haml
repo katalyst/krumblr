@@ -1,6 +1,9 @@
 - if current_user == @blog.user
-  .row.d-flex.justify-content-end
-    =link_to "Manage Blog", edit_blog_path(@blog)
+  .row
+    .col-12
+      .d-flex.justify-content-between
+        =link_to "New Post", new_blog_post_path(@blog)
+        =link_to "Manage Blog", edit_blog_path(@blog)
 
 = render partial: "post", collection: @posts
 

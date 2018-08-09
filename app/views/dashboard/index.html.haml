@@ -1,2 +1,16 @@
+-if @related_tags && @related_tags.any?
+  %p
+    Related Tags:
+    -@related_tags.each do |tag|
+      %em= link_to "##{tag.name}", search_path(query: "##{tag.name}")
+
 .column-layout
-  = render partial: "post", collection: @posts
+  = render partial: "dashboard/post", collection: @posts
+
+-unless @posts.any?
+  .card
+    .card-header Kumblr System
+    .card-body
+      %p
+        %em There's nothing here at the moment...
+
