@@ -17,11 +17,19 @@ class Post < ApplicationRecord
     tags.pluck(:name).map{|name| "##{name}"}.join(" ")
   end
 
+
+  #sets all the tags for this post
   def tag_string=(string = "")
     hash_tags = string.split("#").map(&:parameterize).reject(&:blank?).uniq
+
+    #Add tag objects
     hash_tags.each do |hash_tag|
       tag = Tag.where(name: hash_tag).first_or_create
-      self.post_tags.where(tag: tag).first_or_create
+      post_tags.where(tag: tag).first_or_create
     end
+
+    #remove unwanted tags
+    unwanted_tags = tags.where.not(name: hash_tags)
+    post_tags.where(tag: unwanted_tags).destroy_all
   end
 end
