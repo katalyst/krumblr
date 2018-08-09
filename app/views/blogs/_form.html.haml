@@ -1,0 +1,5 @@
+= simple_form_for @blog do |form|
+  =form.input :name, placeholder: "My NEW totally awesome blog"
+  =form.submit "Save", class: "btn btn-primary"
+  -if @blog.persisted?
+    =link_to "Delete Blog", blog_path(@blog), method: :delete, data: {confirm: "Are you sure? All your posts will be deleted.  This cannot be undone"}, class: "btn btn-outline-danger"

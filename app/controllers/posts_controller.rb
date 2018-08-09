@@ -1,6 +1,8 @@
 class PostsController < BlogsController
+  before_action :require_blog
   before_action :require_user, except: [:index, :show]
   before_action :require_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = @blog.posts.recent_first
   end

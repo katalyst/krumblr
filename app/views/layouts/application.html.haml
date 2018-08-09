@@ -13,8 +13,8 @@
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       %a.navbar-brand{:href => root_path} Kumblr
       .d-lg-none.ml-auto.mr-3
-        -if current_user && current_user.blogs.include?(@blog)
-          =link_to "+ new post", new_blog_post_path(@blog)
+        -if my_blogs.any?
+          =link_to "+ new post", new_blog_post_path(selected_blog)
       %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -29,19 +29,25 @@
               =link_to "Sign In", new_user_session_path
       .user.d-none.d-lg-flex
         %ul.navbar-nav
-          -if current_user && current_user.blogs.any?#&& current_user.blogs.include?(@blog)
+          -if my_blogs.any?#&& current_user.blogs.include?(@blog)
             %li.nav-item.mr-3.nav-link
-              =link_to "+ new post", new_blog_post_path(current_user.blogs.first)
+              =link_to "+ new post", new_blog_post_path(selected_blog)
           -if current_user
             %li.nav-item.dropdown
-              =link_to current_user.email, "#", class: "nav-link dropdown-toggle", id: "userNavDropdown", "role" => "button", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"
+              =link_to (selected_blog || current_user.email), "#", class: "nav-link dropdown-toggle", id: "userNavDropdown", "role" => "button", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"
               %div.dropdown-menu.px-2{"aria-labelledby"=>"userNavDropdown", style: "right: 0; left: auto"}
-                =link_to "Profile", "#todo"
+                - my_blogs.each do |blog|
+                  -next if blog.new_record?
+                  .nav-link
+                    =link_to blog.name, blog_select_path(blog), method: :post, class: "nav-item"
+                .nav-link
+                  =link_to "+ new blog", new_blog_path, class: "nav-item"
                 .dropdown-divider
-                =link_to "Sign Out", destroy_user_session_path, method: :delete
+                .nav-link=current_user.email
+                .nav-item=link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link danger"
           -else
             %li.nav-item
-              = link_to "Sign In", new_user_session_path
+              = link_to "Sign In", new_user_session_path, class: "nav-link"
 
     .container.pt-3
       = flash_messages

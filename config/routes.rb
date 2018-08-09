@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
 
-  resources :blogs, only: [] do
+  resources :blogs, except: [:index] do
+    post "select"
     resources :posts
   end
 end
