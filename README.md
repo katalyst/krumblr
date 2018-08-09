@@ -12,9 +12,9 @@ As you work, please keep a log of the time you spend on various features.
 
 At a minimum the following features should be implemented:
 
-* Users can sign up and create and manage one or more blogs.
-* Users can create posts on the blogs.
-* Posts can be text-only.
+* Users can sign up and create and manage one or more blogs. ✅
+* Users can create posts on the blogs.✅
+* Posts can be text-only.✅
 
 ## Extra Features
 
@@ -26,11 +26,11 @@ there's an interesting feature you'd like to try out, please do. These are just
 a few ideas to implement:
 
 * Comments on posts
-* Tags/categories on posts
+* Tags/categories on posts ✅
 * Reblogging posts
-* Liking posts
+* Liking posts ✅
 * Different post types (images, code snippets, embedded video, etc.)
-* Searching the contents of a blog
+* Searching the contents of a blog ✅
 
 You can implement as many or as few of these as you'd like. **More features/
 more work is not necessarily better**. Code quality is important, so a couple
