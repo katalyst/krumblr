@@ -9,4 +9,5 @@
         .controls.d-flex.justify-content-end
           =link_to "Edit", edit_blog_post_path(post.blog, post), class: "mx-2 btn btn-outline-secondary"
           =link_to "Delete", blog_post_path(post.blog, post), method: :delete, data: {confirm: "Are you sure? This cannot be undone"}, class: "mx-2 btn btn-outline-danger"
-
+    .card-footer
+      =render partial: "post_footer", locals: {post: post}

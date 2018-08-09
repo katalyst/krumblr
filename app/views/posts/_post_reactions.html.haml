@@ -1,0 +1,11 @@
+- if current_user
+  - reaction_hash.each do |key, value|
+    = link_to blog_post_react_path(post.blog, post, kind: key), method: :post, remote: true do
+      %span= key
+      %span{class: ["badge", "badge-pill", reaction&.kind == key ? "badge-primary": "badge-secondary"]}= value
+- else
+  - reaction_hash.each do |key, value|
+    = link_to new_user_session_path, data: {confirm: "You must be signed in to add your reaction"} do
+      %span= key
+      %span{class: "badge badge-pill badge-secondary"}= value
+

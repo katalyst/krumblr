@@ -6,3 +6,5 @@
     .card-body
       %h3= post.title
       = post.content
+    .card-footer
+      = render partial: "posts/post_footer", locals: {post: post}

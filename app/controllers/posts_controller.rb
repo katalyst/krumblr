@@ -1,10 +1,10 @@
 class PostsController < BlogsController
   before_action :require_blog
   before_action :require_user, except: [:index, :show]
-  before_action :require_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_post, except: [:index, :new, :create]
 
   def index
-    @posts = @blog.posts.recent_first
+    @posts = @blog.posts.recent_first.with_reactions
   end
 
   def new
@@ -49,6 +49,12 @@ class PostsController < BlogsController
     redirect_to blog_posts_path(@blog)
   end
 
+  def react
+    reaction = @post.reactions.where(user: current_user).first_or_create
+    reaction.kind = params[:kind]
+    reaction.save
+  end
+
 protected
   def create_post_params
     params.require(:post).permit(:title, :content)
@@ -59,7 +65,7 @@ protected
   end
 
   def require_post
-    @post = @blog.posts.find_by_id(params[:id])
+    @post = @blog.posts.find_by_id(params[:id] || params[:post_id])
 
     unless @post
       flash[:error] = "Cannot find post 😅"

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :blogs, except: [:index] do
     post "select"
-    resources :posts
+    resources :posts do
+      post "react"
+    end
   end
 end
