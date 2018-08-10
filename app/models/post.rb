@@ -25,7 +25,7 @@ class Post < ApplicationRecord
     #Add tag objects
     hash_tags.each do |hash_tag|
       tag = Tag.where(name: hash_tag).first_or_create
-      post_tags.where(tag: tag).first_or_create
+      post_tags.where(tag: tag).first_or_initialize
     end
 
     #remove unwanted tags
