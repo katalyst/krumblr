@@ -25,6 +25,7 @@ class SearchController < ApplicationController
     related_tag_ids = PostTag.where(post_id: tag_search_posts).pluck(:tag_id)
     @related_tags = Tag.where(id: related_tag_ids - matched_tag_ids)
     @posts = Post.where(id: title_search_posts + tag_search_posts)
+    @queries = queries
 
     render "dashboard/index"
   end

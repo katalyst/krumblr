@@ -1,3 +1,7 @@
 %p.tags.mt-3.mb-0
   - post.tags.each do |tag|
-    %em= link_to "##{tag.name}", search_path(query: "##{tag.name}")
+    %em
+      = link_to search_path(query: "##{tag.name}") do
+        = highlight("##{tag.name}", @queries)
+
+
