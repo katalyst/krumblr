@@ -8,6 +8,8 @@ accordingly.
 
 As you work, please keep a log of the time you spend on various features.
 
+  **Sam Wan**: Total time spent approximately 11hrs over 5 days.
+
 ## Core Features
 
 At a minimum the following features should be implemented:
