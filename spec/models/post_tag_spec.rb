@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostTag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:post) }
+  it { should belong_to(:tag) }
+  it { should validate_uniqueness_of(:tag_id).scoped_to(:post_id) }
 end
