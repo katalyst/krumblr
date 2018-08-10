@@ -1,6 +1,10 @@
 class BlogsController < ApplicationController
   before_action :require_blog, except: [:new, :create]
+  before_action :no_search, except: [:show]
 
+  def show
+    redirect_to blog_posts_path(@blog)
+  end
 
   def new
     @blog = current_user.blogs.new
@@ -50,11 +54,5 @@ class BlogsController < ApplicationController
 protected
   def create_update_blog_params
     params.require(:blog).permit(:name)
-  end
-
-  def require_blog
-    @blog = Blog.where(id: params[:blog_id] || params[:id]).first
-
-    redirect_to root_path unless @blog
   end
 end

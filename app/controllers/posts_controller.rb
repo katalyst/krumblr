@@ -1,7 +1,8 @@
-class PostsController < BlogsController
+class PostsController < ApplicationController
   before_action :require_blog
   before_action :require_user, except: [:index, :show]
   before_action :require_post, except: [:index, :new, :create]
+  before_action :no_search,    except: [:index, :show]
 
   def index
     @posts = @blog.posts.recent_first.with_reactions.with_tags

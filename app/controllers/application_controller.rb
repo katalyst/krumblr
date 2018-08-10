@@ -6,6 +6,12 @@ protected
     redirect_to root_path unless current_user
   end
 
+  def require_blog
+    @blog = Blog.where(id: params[:blog_id] || params[:id]).first
+
+    redirect_to root_path unless @blog
+  end
+
   def selected_blog
     Blog.find_by_id(session[:selected_blog_id]) || my_blogs.first
   end
@@ -20,5 +26,9 @@ protected
     else
       Blog.unscoped
     end
+  end
+
+  def no_search
+    @no_search = true
   end
 end
