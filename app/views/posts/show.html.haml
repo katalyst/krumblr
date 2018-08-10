@@ -1,1 +1,5 @@
 =render partial: "post", locals: {post: @post}
+.d-flex.justify-content-end
+  -if current_user == @post.blog.user
+    =link_to "Edit", edit_blog_post_path(@post.blog, @post), class: "mx-1 btn btn-outline-secondary"
+    =link_to "Delete", blog_post_path(@post.blog, @post), method: :delete, data: {confirm: "Are you sure? This cannot be undone"}, class: "mx-1 btn btn-outline-danger"

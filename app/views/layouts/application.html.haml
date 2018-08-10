@@ -16,6 +16,8 @@
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
+          %li.nav-item.active
+            = blog_or_root_path @blog
           -if current_user
             - my_blogs.each do |blog|
               -next if blog.new_record?
