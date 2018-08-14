@@ -34,7 +34,7 @@
               =link_to "Sign In", new_user_session_path
       .user.d-none.d-lg-flex
         %ul.navbar-nav
-          -if my_blogs.any?#&& current_user.blogs.include?(@blog)
+          -if my_blogs.any? && selected_blog
             %li.nav-item.mr-3.nav-link
               =link_to "+ new post", new_blog_post_path(selected_blog)
           -if current_user

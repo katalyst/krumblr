@@ -1,20 +1,22 @@
 class SearchController < ApplicationController
   def index
-    queries = params[:query].to_s.parameterize.split("-")
+    queries = params.fetch(:query, "").split(/\s/)
+    tag_queries = params.fetch(:query, "").scan(/#[\S]+/)
 
     title_search_posts = []
     tag_search_posts = []
     matched_tag_ids = []
 
-    queries.each do |sub_query|
-      #check if it's a tag
-      possible_tag = sub_query.gsub("#", "")
-      tags = Tag.where("lower(name) LIKE ? ", "%#{possible_tag.downcase}%")
+    tag_queries.each do |possible_tag|
+       #check if it's a tag
+      tags = Tag.where(name: possible_tag.gsub("#", "").downcase)
       if tags.any?
         matched_tag_ids += tags.pluck(:id)
         tag_search_posts += PostTag.where(tag: tags).pluck(:post_id)
       end
+    end
 
+    queries.each do |sub_query|
       #Search titles for now
       #ignore sub_queries that are too short
       if sub_query.length >= 2

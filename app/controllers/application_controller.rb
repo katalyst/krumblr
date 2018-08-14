@@ -13,7 +13,7 @@ protected
   end
 
   def selected_blog
-    Blog.find_by_id(session[:selected_blog_id]) || my_blogs.first
+    Blog.find_by_id(session[:selected_blog_id]) || my_blogs.detect(&:persisted?)
   end
 
   def select_blog(blog)
