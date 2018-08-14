@@ -1,0 +1,30 @@
+<!-- Added to display blogs of the current user -->
+<div>
+  </br><h1>Your blogs</h1></br>
+  <% @blogs.each do |blog| %>
+    <div class="card" style="margin-bottom :10px">
+      <h2> 
+        <%= link_to blog.blogname, blog, :class => "blog-card" %> 
+        <%= link_to image_tag("delete.png", :class => "delete-img"), blog, method: "delete" %>
+        <!-- <%= link_to image_tag("edit.svg", :class => "edit-img"), blog, method: "update" %> -->
+      </h2>
+    </div>
+  <% end %>
+</div>
+
+<!-- Added to allow user to make new blogs -->
+<div style="margin-top: 40px">
+  <button id="showFormButton" class="btn btn-primary btn-lg">Start a new blog</button>
+</div>
+
+<div id="showFormDiv" style="display:none">
+  <%= bootstrap_form_with scope: :blog, url: blogs_path, local: true do |f| %>  
+    <div class="field"> 
+      <%= f.text_field :blogname, :placeholder => "Name your blog", :hide_label => "true" %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+    </div> 
+    <div class="actions"> 
+      <%= f.submit "Create" %> 
+    </div> 
+  <% end %>
+</div>

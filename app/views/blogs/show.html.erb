@@ -1,0 +1,41 @@
+<!-- Added for search functionality -->
+<div>
+  <%= form_tag(posts_path, method: 'get', class: 'navbar-form navbar-right') do %>
+    <%= search_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search posts' %>
+    <%= submit_tag "Search", name: nil, class: 'btn btn-primary btn-lg', :name => nil %>
+  <% end %>
+</div>
+
+<!-- Added to show all posts in a blog -->
+<div>
+  </br><h1>Posts</h1></br>
+  <% @posts.each do |post| %>
+    <div class="card" style="margin-bottom :10px">
+        <h2><%= link_to post.title, post, :class => "post-card" %>
+        <% if @blog.user_id == current_user.id %>
+          <%= link_to image_tag("delete.png", :class => "delete-img"), post, method: "delete" %>
+        <% end %>
+      </h2>
+    </div>
+  <% end %>
+</div>
+
+<!-- Added to allow only blog owner to make new posts -->
+<div style="margin-top: 40px">
+  <% if @blog.user_id == current_user.id %>
+    <button id="showFormButton" class="btn btn-primary btn-lg">Start a new post</button>
+  <% end %>
+</div>
+
+<div id="showFormDiv" style="display:none">
+  <%= bootstrap_form_with scope: :post, url: posts_path, local: true do |f| %>  
+    <div> 
+      <%= f.text_field :title, :placeholder => "Name your post", :hide_label => "true", :class => "input-small" %>
+      <%= f.text_area :text, :placeholder => "Enter your post here", :hide_label => "true", :class => "input-large" %>
+      <%= f.hidden_field :blog_id, value: @blog.id %>
+    </div> 
+    <div class="actions"> 
+      <%= f.submit "Post" %> 
+    </div> 
+  <% end %>
+</div>

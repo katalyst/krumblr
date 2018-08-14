@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 class="post_title"> <%= @post.title %> </h2>
+  <h6> <%= @post.text %> </h6>
+</div>
+
+<!-- Added to display comments -->
+<div style="margin-top: 40px">
+  <h2 class="comments">Comments</h2>
+  <% @comments.each do |comment| %>
+    <div class="card" style="margin-bottom :10px">
+      <h7> <%= comment.comment_text %> </h7>
+      <!-- Found original poster of comment to display name on comment -->
+      <p class="text-muted" style="margin-top: 10px"> <%= User.friendly.find(comment.user_id).first_name %> at <%= comment.created_at %> </p>
+    </div>
+  <% end %>
+<div>
+
+<!-- Form added to store new comments -->
+<%= bootstrap_form_with scope: :comment, url: comments_path, local: true do |f| %>  
+    <div style="margin-top: 40px"> 
+      <%= f.text_area :comment_text, :placeholder => "Type a comment here", :hide_label => "true", :class => "input-large" %>
+      <%= f.hidden_field :post_id, value: @post.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+    </div> 
+    <div class="actions"> 
+      <%= f.submit "Comment" %> 
+    </div> 
+  <% end %>

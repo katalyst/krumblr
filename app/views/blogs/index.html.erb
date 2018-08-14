@@ -1,0 +1,9 @@
+<!-- Added to display all blogs -->
+<div>
+</br><h1>All blogs</h1></br>
+<% @blogs.each do |blog| %>
+    <div class="card" style="margin-bottom :10px">
+    <h2><%= link_to blog.blogname, blog, :class => "blog-card" %></h2>
+    </div>
+<% end %>
+</div> 
