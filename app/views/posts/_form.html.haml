@@ -1,0 +1,7 @@
+= simple_form_for [blog,post] do |form|
+  =form.input :title
+  =form.input :content
+  // In other projects, I might have used jquery autocomplete
+  =form.input :tag_string, as: :text, hint: "e.g. #first #bloggingIsAwesome #justBloggerThings", label: "Tags"
+  =form.submit "Post it!", class: "btn btn-primary"
+  =link_to "cancel", :back

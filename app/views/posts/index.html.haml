@@ -1,0 +1,20 @@
+- if current_user == @blog.user
+  .row
+    .col-12
+      .d-flex.justify-content-between
+        =link_to "New Post", new_blog_post_path(@blog)
+        =link_to "Manage Blog", edit_blog_path(@blog)
+
+= render partial: "post", collection: @posts
+
+-unless @posts.any?
+  .card
+    .card-header Kumblr System
+    .card-body
+      %p
+        %em There's nothing here at the moment...
+
+      -if current_user == @blog.user
+        Why don't you kick things off with by writing a post?
+        .d-flex.justify-content-center
+          = link_to "Let's Do it!", new_blog_post_path(@blog), class: "btn btn-primary"

@@ -36,12 +36,23 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Katalyst regular gems
+gem 'devise'
+gem 'friendly_id', '~> 5.2.0'
+gem 'simple_form'
+
+gem 'haml'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
+gem 'rails-timeago', '~> 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'rspec-rails', '~> 3.7.2'
   gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'rails-controller-testing'
 end
 
 group :development do

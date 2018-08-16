@@ -1,0 +1,13 @@
+.post-wrapper
+  .card{id: post.id}
+    .card-header.d-flex.justify-content-between
+      = link_to post.title, blog_post_path(post.blog, post)
+      .controls
+        %span
+          = link_to blog_post_path(post.blog, post) do
+            = timeago_tag post.updated_at
+    .card-body
+      = post.content
+      = render partial: "posts/post_tags", locals: {post: post}
+    .card-footer
+      =render partial: "posts/post_footer", locals: {post: post}

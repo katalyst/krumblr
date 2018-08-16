@@ -1,0 +1,12 @@
+.post-wrapper
+  .card{id: post.id}
+    .card-header.d-flex.justify-content-between.flex-xs-row.flex-xl-column
+      = link_to post.blog.name, blog_posts_path(post.blog)
+      = link_to blog_post_path(post.blog, post) do
+        = timeago_tag post.updated_at
+    .card-body
+      %h3= post.title
+      = post.content.truncate(500, omission: '... (continued)')
+      = render partial: "posts/post_tags", locals: {post: post}
+    .card-footer
+      = render partial: "posts/post_footer", locals: {post: post}
