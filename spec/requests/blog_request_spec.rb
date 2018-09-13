@@ -11,7 +11,7 @@ describe 'BlogsController', type: :request do
     it 'provides user-interface to create a new blog' do
       get '/blogs/new'
       expect(response).to have_http_status :success
-      expect(response.body).to include 'Create new project'
+      expect(response.body).to include 'New blog'
     end
   end
 end
