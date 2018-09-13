@@ -44,6 +44,7 @@ module Krumblr
       g.stylesheets = false
       g.helper = false
       g.javascripts = false
+      g.jbuilder = false
     end
   end
 end
