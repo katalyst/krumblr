@@ -29,5 +29,21 @@ module Krumblr
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.orm :active_record
+      g.template_engine :haml
+      g.helper_specs false
+      g.view_specs false
+      g.routing_specs false
+      g.controller_specs false
+      g.request_specs false
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+      g.factory_bot false
+      g.stylesheets = false
+      g.helper = false
+      g.javascripts = false
+    end
   end
 end
