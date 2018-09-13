@@ -8,10 +8,21 @@ describe 'BlogsController', type: :request do
   end
 
   describe 'GET /blogs/new' do
-    it 'provides user-interface to create a new blog' do
-      get '/blogs/new'
-      expect(response).to have_http_status :success
-      expect(response.body).to include 'New blog'
+    context 'with authenticated user' do
+      it 'provides user-interface to create a new blog' do
+        get '/blogs/new'
+        expect(response).to have_http_status :success
+        expect(response.body).to include 'New blog'
+      end
+    end
+
+    context 'with unauthenticated user' do
+      it 'does not give access' do
+        sign_out user
+
+        get '/blogs/new'
+        expect(response).to redirect_to new_user_session_url
+      end
     end
   end
 end
