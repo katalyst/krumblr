@@ -54,6 +54,7 @@ group :development do
 end
 
 gem 'devise'
+gem 'haml-rails', '~> 1.0'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
