@@ -25,4 +25,18 @@ describe 'BlogsController', type: :request do
       end
     end
   end
+
+  describe 'POST /blogs' do
+    context 'with authenticated user' do
+      before :each do
+        post('/blogs',
+             params: { blog: attributes_for(:blog) })
+      end
+
+      it 'creates a new blog entry associated with the current user' do 
+        expect(Blog.count).to eq 1
+        expect(user.blogs).to include(Blog.last)
+      end
+    end
+  end
 end

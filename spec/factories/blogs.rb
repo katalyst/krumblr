@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :blog do
-    name "MyString"
+    name "My Blog"
   end
 end
