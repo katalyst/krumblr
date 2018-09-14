@@ -59,6 +59,14 @@ describe 'BlogsController', type: :request do
           expect(response).to have_http_status 302
         end
       end
+
+      context 'when requested resource does not exist' do
+        it 'responds with a redirect' do
+          get '/blogs/1'
+          
+          expect(response).to have_http_status 302
+        end
+      end
     end
   end
 end

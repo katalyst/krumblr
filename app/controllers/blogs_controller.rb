@@ -47,6 +47,9 @@ class BlogsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = 'Sorry this resource does not exit'
+      redirect_to blogs_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
