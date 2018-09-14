@@ -50,4 +50,29 @@ describe 'PostsController', type: :request do
       end
     end
   end
+
+  describe 'GET /posts/:id' do
+    context 'with authenticated user' do
+      context 'for existing blog that belongs to current user' do
+        it 'responds with success' do
+          blog = create :blog, user_id: user.id
+          blog_post = create :post, blog_id: blog.id
+          
+          get "/posts/#{blog_post.id}"
+          expect(response).to have_http_status :success
+        end
+      end
+
+      context 'for blog that does not belong to current user' do
+        it 'responds with a redirect' do
+          other_user = create :user
+          other_blog = create :blog, user_id: other_user.id
+          other_blog_post = create :post, blog_id: other_blog.id
+
+          get "/posts/#{other_blog_post.id}"
+          expect(response).to have_http_status 302
+        end
+      end
+    end
+  end
 end
