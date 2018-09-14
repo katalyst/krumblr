@@ -36,4 +36,18 @@ describe 'PostsController', type: :request do
       end
     end
   end
+
+  describe 'POST /blogs/:blog_id/posts' do
+    context 'with authenticated user' do
+      context 'for existing blog that belongs to current user' do
+        it 'creates a new post in the database' do
+          blog = create :blog, user_id: user.id
+          post("/blogs/#{blog.id}/posts",
+               params: { post: attributes_for(:post) })
+
+          expect(Post.count).to eq 1
+        end
+      end
+    end
+  end
 end
