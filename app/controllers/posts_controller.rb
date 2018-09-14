@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   private
 
   def load_blog
-    @blog = Blog.find(params[:blog_id])
+    @blog = current_user.blogs.find(params[:blog_id])
   rescue ActiveRecord::RecordNotFound
     flash[:notice] = 'Sorry this resource does not exit'
     redirect_to blogs_path
