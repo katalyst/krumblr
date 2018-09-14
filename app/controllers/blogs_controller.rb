@@ -2,12 +2,10 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /blogs
   def index
     @blogs = current_user.blogs
   end
 
-  # GET /blogs/1
   def show
     unless current_user.blogs.include? @blog
       flash[:notice] = 'Sorry you are not authorised to access this resource'
@@ -15,16 +13,13 @@ class BlogsController < ApplicationController
     end
   end
 
-  # GET /blogs/new
   def new
     @blog = Blog.new
   end
 
-  # GET /blogs/1/edit
   def edit
   end
 
-  # POST /blogs
   def create
     @blog = current_user.blogs.build(blog_params)
 
@@ -35,7 +30,6 @@ class BlogsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blogs/1
   def update
     if @blog.update(blog_params)
       redirect_to @blog, notice: 'Blog was successfully updated.'
@@ -44,7 +38,6 @@ class BlogsController < ApplicationController
     end
   end
 
-  # DELETE /blogs/1
   def destroy
     @blog.destroy
     redirect_to blogs_url, notice: 'Blog was successfully destroyed.' 
