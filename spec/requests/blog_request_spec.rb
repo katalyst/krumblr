@@ -39,4 +39,26 @@ describe 'BlogsController', type: :request do
       end
     end
   end
+
+  describe 'GET /blogs/:id' do
+    context 'with authenticated user' do
+      context 'when requested resource belongs to current user' do
+        it 'responds successfully' do
+          blog = create(:blog, user: user)
+          get "/blogs/#{blog.id}"
+
+          expect(response).to have_http_status :success
+        end
+      end
+
+      context 'when requested resource does not belong to current user' do
+        it 'responds with a redirect' do
+          other_blog = create(:blog)
+          get "/blogs/#{other_blog.id}"
+
+          expect(response).to have_http_status 302
+        end
+      end
+    end
+  end
 end

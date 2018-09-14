@@ -9,6 +9,10 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
+    unless current_user.blogs.include? @blog
+      flash[:notice] = 'Sorry you are not authorised to access this resource'
+      redirect_to blogs_path
+    end
   end
 
   # GET /blogs/new
