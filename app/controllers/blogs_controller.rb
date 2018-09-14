@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs
   def index
-    @blogs = Blog.all
+    @blogs = current_user.blogs
   end
 
   # GET /blogs/1
