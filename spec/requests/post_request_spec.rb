@@ -11,7 +11,7 @@ describe 'PostsController', type: :request do
     context 'with authenticate user' do
       context 'for existing blog that belongs to current user' do
         it 'responds with success' do
-          blog = create :blog
+          blog = create :blog, user_id: user.id
           get "/blogs/#{blog.id}/posts/new"
           
           expect(response).to have_http_status :success
