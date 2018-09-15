@@ -1,7 +1,5 @@
-%p
-  %b Name:
-  = @blog.name
+%h2= @blog.name 
 
-= link_to 'Edit', edit_blog_path(@blog)
-\|
+= render partial: 'posts/post', collection: @blog.posts
+
 = link_to 'Back', blogs_path
