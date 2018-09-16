@@ -18,6 +18,10 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    unless current_user.blogs.include? @blog
+      flash[:notice] = 'Sorry you are not authorised to access this resource'
+      redirect_to blogs_path
+    end
   end
 
   def create
