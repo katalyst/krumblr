@@ -1,16 +1,13 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_user_authority, only: [:show, :edit]
 
   def index
     @blogs = current_user.blogs
   end
 
   def show
-    unless current_user.blogs.include? @blog
-      flash[:notice] = 'Sorry you are not authorised to access this resource'
-      redirect_to blogs_path
-    end
   end
 
   def new
@@ -18,10 +15,6 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    unless current_user.blogs.include? @blog
-      flash[:notice] = 'Sorry you are not authorised to access this resource'
-      redirect_to blogs_path
-    end
   end
 
   def create
@@ -47,13 +40,21 @@ class BlogsController < ApplicationController
     redirect_to blogs_url, notice: 'Blog was successfully destroyed.' 
   end
 
-  private
+  private 
+
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = 'Sorry this resource does not exit'
       redirect_to blogs_path
+    end
+
+    def check_user_authority
+      unless current_user.blogs.include? @blog
+        flash[:notice] = 'Sorry you are not authorised to access this resource'
+        redirect_to blogs_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
