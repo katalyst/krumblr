@@ -1,0 +1,8 @@
+- if local_assigns[:post]
+	.text-center
+		- if controller_name == "pages"
+			%h1= link_to "#{post.title}", post_path(post)
+		- else
+			%h1= link_to "#{post.title}", edit_users_post_path(post)
+	%span= raw post.body
+	= render "users/tags", post: post

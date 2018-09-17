@@ -1,0 +1,15 @@
+= simple_form_for [:users, @post] do |f|
+	= f.hidden_field :blog_id
+	= f.input :title
+	= f.association :tags, collection: Tag.all.map{|tag| [tag.name, tag.id]}, input_html: {class: 'select2-field'}
+	= f.input :body, as: :ckeditor
+	= link_to 'Back', :back
+	= f.button :submit, "Save", class: "small button"
+
+	:javascript
+		$(document).ready(function() {
+			$('.select2-field').select2({
+				placeholder: "Choose a tag",
+				allowClear: true
+			});
+		});

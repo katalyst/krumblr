@@ -1,0 +1,5 @@
+- if local_assigns[:post].present?
+	%hr
+	%span Comments
+	- post.comments.without_parent.order("created_at DESC").each do |comment|
+		= render "users/comment", comment: comment

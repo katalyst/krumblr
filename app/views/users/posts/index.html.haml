@@ -1,0 +1,8 @@
+.small-10.columns
+	.text-center
+		%h1 Posts
+	- @posts.each do |post|
+		.row
+			%h3= link_to "#{post.title_with_blog}", users_post_path(post)
+	= paginate @posts, window: 2
+

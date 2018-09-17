@@ -1,0 +1,4 @@
+= simple_form_for [:users, @blog] do |f|
+	= f.input :title
+	= link_to "Back", :back
+	= f.button :submit, "Save", class: "small button"

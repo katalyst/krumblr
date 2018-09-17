@@ -1,0 +1,18 @@
+- if local_assigns[:comment]
+	.grid-container
+		.grid-x
+			%table.medium-10.cell
+				%tbody
+					%tr
+						%td.medium-8.cell
+							- if comment.parent.present? && comment.parent.user_id != comment.user_id
+								%span= "#{comment.user.name}: Reply #{comment.parent.user.name}:"
+							- else
+								%span= "#{comment.user.name}:"
+							%span= comment.body
+						%td.medium-2.cell
+							%span= link_to "Reply", new_users_comment_path(post_id: @post, parent_id: comment.id), remote: true
+			%span.medium-10.cell{data: {target: "reply-form-#{comment.id}"}}
+
+		- comment.replies.each do |reply|
+			= render "users/comment", comment: reply

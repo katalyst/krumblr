@@ -1,0 +1,8 @@
+- if current_user.blank?
+	window.location.replace("#{new_user_session_path}");
+- else
+	$('form').remove();
+	- if @comment.parent_id.present?
+		$("[data-target='reply-form-" + "#{@comment.parent_id}" + "']").html('#{j render 'form'}');
+	- else
+		$("#user_comment_form").html('#{j render 'form'}');

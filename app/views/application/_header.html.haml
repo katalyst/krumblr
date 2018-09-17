@@ -1,0 +1,12 @@
+%nav.top-bar{"data-topbar" => "", :role => "navigation"}
+	%ul.title-area
+		%li.name
+			%h1= link_to "Krumblr", root_path
+	%section.top-bar-section
+		%ul.right
+			- unless current_user.present?
+				%li= link_to "Login", new_user_session_path
+				%li= link_to "Sign Up", new_user_registration_path
+			- else
+				%li= link_to "#{current_user.name}", "#"
+				%li= link_to "Logout", destroy_user_session_path, method: :delete

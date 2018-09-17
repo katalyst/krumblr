@@ -1,0 +1,8 @@
+.small-10.columns
+	.text-center
+		%h1 Blogs
+	- @blogs.each do |blog|
+		.row
+			%h3= link_to "#{blog.title}", users_blog_path(blog)
+	= paginate @blogs, window: 2
+

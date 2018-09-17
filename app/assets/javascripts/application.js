@@ -10,7 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require foundation
+//= require ckeditor/init
+//= require select2
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
+
+$("nav#sidenav ul a").each(function() {
+  if ($(this).attr("href") === window.location.pathname) {
+    return $(this).closest("li").addClass("active");
+  }
+});

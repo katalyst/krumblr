@@ -1,0 +1,22 @@
+%html{:lang => "en"}
+	%head
+		%meta{:charset => "utf-8"}
+		%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+		%script{:src => "http://code.jquery.com/jquery-1.11.0.min.js"}
+		%title= content_for?(:title) ? yield(:title) : "foundation-rails"
+		= stylesheet_link_tag    "application"
+		= javascript_include_tag "vendor/modernizr"
+		= csrf_meta_tags
+		= render "header"
+	%body
+		.large-12.columns
+		- if current_user.present?
+			= render "sidenav"
+			.small-10.right.columns
+				= yield
+		- else
+			= yield
+		= javascript_include_tag "application"
+		= render "flash"
+	%footer
+		= render "footer"
