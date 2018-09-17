@@ -1,9 +1,11 @@
-- if local_assigns[:post]
-	%table
-		Tags:
-		%tbody
-			%tr
-				- post.tags.each_with_index do |tag, index|
-					%td= "#{tag.name}"
-					- if new_table_row?(index, 5)
-						%tr
+.row
+	.small-12.columns
+		- if local_assigns[:post]
+			%table
+				Tags:
+				%tbody
+					%tr
+						- post.tags.each_with_index do |tag, index|
+							%td= "#{tag.name}"
+							- if new_table_row?(index, 5)
+								%tr
