@@ -1,0 +1,5 @@
+.right
+	- flash.each do |key, value|
+		.alert-box(data-alert)
+			= value
+			%a.close{href:"#"} &times;

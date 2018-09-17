@@ -1,0 +1,14 @@
+.row
+	.small-12.columns
+		.text-center
+			%h1=  link_to "#{@post.blog.title}", users_blog_path(@post.blog)
+		.small-2.columns
+			%p
+		.small-8.columns
+			.text-center
+				%h2= link_to "#{@post.title}", edit_users_post_path(@post)
+			%span= raw @post.body
+			= render "users/tags", post: @post
+			= link_to "Delete", users_post_path(@post), method: :delete, data: {confirm: 'Are you sure?'}, class: "small button"
+			= link_to "Back", :back, class: "small button"
+		.small-2.columns

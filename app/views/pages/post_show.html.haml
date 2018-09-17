@@ -1,0 +1,20 @@
+.row
+	.small-12.columns
+		.text-center
+			%h1= link_to "#{@post.blog.title}", blog_path(@post.blog)
+		.small-2.columns
+			%p
+		.small-8.columns
+			.text-center
+				%h2= "#{@post.title}"
+			%span= raw @post.body
+			= render "users/tags", post: @post
+			= link_to "Comment", new_users_comment_path(post_id: @post), remote: true, class: "small button"
+			- if current_user.present?
+				= link_to "Back", :back, class: "small button"
+		.small-2.columns
+	.row
+		.small-12.columns
+			#user_comment_form
+		#post_comments.row
+			= render "users/comments", post: @post

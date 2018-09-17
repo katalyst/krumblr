@@ -1,0 +1,14 @@
+.row
+	.small-12.columns
+		.text-center
+			%h1= link_to "#{@blog.title}", edit_users_blog_path(@blog)
+		.row
+			= link_to "Delete Blog", users_blog_path(@blog), method: :delete, data: {confirm: 'Are you sure?'}, class: "small button"
+			= link_to "New Post", new_users_post_path(blog_id: @blog.id), class: "small button"
+			= link_to "Back", :back, class: "small button"
+		.small-2.columns
+			%p
+		.small-8.columns
+			- @blog.posts.each do |post|
+				= render "users/post", post: post
+		.samll-2.columns

@@ -1,0 +1,9 @@
+.row
+	.small-12.columns
+		.text-center
+			%h1= "#{@blog.title}"
+		.small-2.columns
+			%p
+		.small-8.columns
+			= render "users/posts", posts: @posts
+		.small-2.columns

@@ -1,0 +1,10 @@
+.small-12.columns
+	.text-center
+		%h1 Recent Posts
+	.row
+		.small-2.columns
+			= render "blog_search_form", blog_search: BlogSearch.new		
+		.small-8.columns
+			#posts_result
+				= render "users/posts", posts: @posts
+		.small-2.columns

@@ -1,0 +1,5 @@
+= simple_form_for [:users, @comment], remote: true do |f|
+	= f.input :body, label: false, placeholder: 'Please write a few comments...'
+	= f.hidden_field :post_id
+	= f.hidden_field :parent_id
+	= f.button :submit, "Submit", class: "small button"
