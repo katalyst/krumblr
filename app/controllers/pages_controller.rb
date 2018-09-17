@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
 	def blog_show
 		@blog = Blog.find_by(id: params[:id])
-		@posts = @blog.posts.order("updated_at DESC").page(params[:page]).per(5)
+		@posts = @blog.posts.order("updated_at DESC").page(params[:page]).per(5) if @blog.present?
 
 		unless @blog.present?
 			flash[:error] = "Blog does not exist"

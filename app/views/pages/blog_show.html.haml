@@ -5,5 +5,5 @@
 		.small-2.columns
 			%p
 		.small-8.columns
-			= render "users/posts", posts: @posts
+			= render "users/posts", posts: @posts if @posts.present?
 		.small-2.columns

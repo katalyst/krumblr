@@ -14,6 +14,12 @@ RSpec.describe Users::CommentsController, type: :controller do
       get :new, params: {post_id: @post.id}, xhr: true, format: :js
       expect(response).to have_http_status(200)
 		end
+
+		it "should set devise user return to sesson" do
+			sign_out @user
+			get :new, params: {post_id: @post.id}, xhr: true, format: :js
+			expect(session["user_return_to"]).to eq post_path(@post.id)
+		end
 	end
 
 	describe '#create' do

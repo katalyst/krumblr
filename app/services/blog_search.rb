@@ -5,6 +5,6 @@ class BlogSearch
 	attr_accessor :contents
 
 	def search
-		Post.joins(:tags, :blog).where("lower(blogs.title) like ? or lower(posts.title) like ? or lower(posts.body) like ? or lower(tags.name) like ?", "%#{contents.downcase}%", "%#{contents.downcase}%", "%#{contents.downcase}%", "%#{contents.downcase}%").uniq
+		Post.left_joins(:tags).joins(:blog).where("lower(blogs.title) like ? or lower(posts.title) like ? or lower(posts.body) like ? or lower(tags.name) like ?", "%#{contents.downcase}%", "%#{contents.downcase}%", "%#{contents.downcase}%", "%#{contents.downcase}%").uniq
 	end
 end
