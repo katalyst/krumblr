@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'CommentsController', type: :request do
   let(:user) { create(:user, email: 'current_user@example.com') } 
+  let(:blog_post) { create(:post) }
   before :each do
     sign_in user
   end
@@ -9,7 +10,7 @@ describe 'CommentsController', type: :request do
   describe 'GET /blogs/:id/posts/:id/comments/new' do
     context 'with authenticated user' do
       it 'responds with success' do
-        get '/posts/1/comments/new'
+        get "/posts/#{blog_post.id}/comments/new"
         expect(response).to have_http_status :success
       end
     end
@@ -17,7 +18,6 @@ describe 'CommentsController', type: :request do
 
   describe 'POST /posts/:post_id/comments' do
     before :each do
-      blog_post = create(:post)
       post("/posts/#{blog_post.id}/comments",
            params: { comment: attributes_for(:comment) })
     end
