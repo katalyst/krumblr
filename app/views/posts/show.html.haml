@@ -1,5 +1,14 @@
 %p
   %b Body:
   = @post.body
+%b Comments:
+- @post.comments.each do |comment|
+  %p
+    = comment.body
+    %em= comment.user_email
+    
 
+
+= link_to 'Leave a Comment', new_post_comment_path(@post)
+\|
 = link_to 'Back', blog_path(@post.blog)

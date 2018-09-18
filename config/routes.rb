@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   shallow do
     resources :blogs do
-      resources :posts
+      resources :posts do
+        resources :comments, only: [:new, :create]
+      end
     end
   end
 end
