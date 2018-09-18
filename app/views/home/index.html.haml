@@ -1,3 +1,7 @@
 %h2 Welcome to Krumblr
 
-%h4= link_to 'Blogs', blogs_path
+%ul
+  - @blogs.each do |blog|
+    %li
+      %h3= link_to "#{blog.name}", blog
+      = "author: #{blog.user.email}"

@@ -2,6 +2,7 @@
 
 = render partial: 'posts/post', collection: @blog.posts
 
-= link_to 'Create New Post', new_blog_post_path(@blog)
+- if @blog.can_be_accessed_by?(current_user)
+  = link_to 'Create New Post', new_blog_post_path(@blog)
 \|
 = link_to 'Back', blogs_path

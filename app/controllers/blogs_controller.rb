@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_user_authority, only: [:show, :edit, :update, :destroy]
+  before_action :check_user_authority, only: [:edit, :update, :destroy]
 
   def index
     @blogs = current_user.blogs

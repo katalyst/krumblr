@@ -18,10 +18,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    unless @post.blog.user.eql? current_user
-      flash[:notice] = 'You are not authorized to access this resource'
-      redirect_to blogs_path
-    end
   end
 
   private
