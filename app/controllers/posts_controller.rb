@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_blog, only: [:new, :create]
+  before_action :check_user_authority_on_blog, only: [:new, :create]
   before_action :set_post, only: [:show]
 
   def new
-    @post = @blog.posts.build
+    @post = Post.new
   end
 
   def create
@@ -20,10 +21,10 @@ class PostsController < ApplicationController
   def show
   end
 
-  private
+  private 
 
   def load_blog
-    @blog = current_user.blogs.find(params[:blog_id])
+    @blog = Blog.find(params[:blog_id])
   rescue ActiveRecord::RecordNotFound
     flash[:notice] = 'Sorry this resource does not exit'
     redirect_to blogs_path

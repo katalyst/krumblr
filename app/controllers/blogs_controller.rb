@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_user_authority, only: [:edit, :update, :destroy]
+  before_action :check_user_authority_on_blog, only: [:edit, :update, :destroy]
 
   def index
     @blogs = current_user.blogs
@@ -47,13 +47,6 @@ class BlogsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = 'Sorry this resource does not exit'
       redirect_to blogs_path
-    end
-
-    def check_user_authority
-      unless current_user.has_access_to?(@blog)
-        flash[:notice] = 'Sorry you are not authorised to access this resource'
-        redirect_to blogs_path
-      end
     end
 
     def blog_params
