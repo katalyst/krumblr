@@ -3,7 +3,6 @@ class Blog < ApplicationRecord
   has_many :posts
 
   def can_be_accessed_by?(user)
-    return true if user.blogs.include? self
-    false
+    user.blogs.include? self
   end
 end
