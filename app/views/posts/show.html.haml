@@ -2,12 +2,7 @@
   %b Body:
   = @post.body
 %b Comments:
-- @post.comments.each do |comment|
-  %p
-    = comment.body
-    %em= comment.user_email
-    
-
+= render partial: 'comments/comment', collection: @post.comments
 
 = link_to 'Leave a Comment', new_post_comment_path(@post)
 \|
