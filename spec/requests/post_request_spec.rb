@@ -40,12 +40,18 @@ describe 'PostsController', type: :request do
   describe 'POST /blogs/:blog_id/posts' do
     context 'with authenticated user' do
       context 'for existing blog that belongs to current user' do
-        it 'creates a new post in the database' do
+        before :each do
           blog = create :blog, user_id: user.id
           post("/blogs/#{blog.id}/posts",
-               params: { post: attributes_for(:post) })
+               params: { post: attributes_for(:post, tag_list: 'tag1, tag2') })
+        end
 
+        it 'creates a new post in the database' do
           expect(Post.count).to eq 1
+        end
+
+        it 'creates tags associated with the current post in the database' do
+          expect(Post.first.tags).not_to be_empty
         end
       end
     end

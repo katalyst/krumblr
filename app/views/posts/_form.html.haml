@@ -4,5 +4,8 @@
   .field
     = f.label :body
     = f.text_area :body
+  .field
+    = f.label :tag_list, 'Tags'
+    = f.text_field :tag_list, placeholder: "Give tag names separated by comma"
   .actions
     = f.submit 'Save'

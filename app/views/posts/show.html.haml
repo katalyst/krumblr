@@ -1,6 +1,11 @@
 %p
   %b Body:
   = @post.body
+%p
+  %b Tagged under:
+  = @post.tag_list
+    
+
 %b Comments:
 = render partial: 'comments/comment', collection: @post.comments
 
