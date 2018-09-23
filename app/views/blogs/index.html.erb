@@ -1,0 +1,30 @@
+<h1>Blogs</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>User</th>
+    <th></th>
+  </tr>
+
+  <% @blogs.each do |blog| %>
+    <tr>
+      <td><%= blog.text %></td>
+      <td><%= blog.user.try(:email) || "deleted_user" %></td>
+      <td><%= link_to 'Show', blog_path(blog) %></td>
+      <% if blog.user==current_user %>
+        <td>
+          | <%= link_to 'Edit', edit_blog_path(blog) %>
+        </td>
+        <td>
+          | <%= link_to 'Destroy', blog_path(blog),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+</br>
+<%= link_to 'New blog', new_blog_path %>

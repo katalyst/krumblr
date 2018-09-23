@@ -1,0 +1,9 @@
+<p>
+  <%= post.user.try(:email) || "deleted_user" %></br>
+  <%= post.body %></br>
+  <% if post.user==current_user || current_user==post.blog.user %>
+    <%= link_to 'Destroy Post', [post.blog, post],
+            method: :delete,
+            data: {confirm: 'Area you sure?'} %>
+  <% end %>
+</p>

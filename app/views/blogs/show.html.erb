@@ -1,0 +1,16 @@
+<p>
+  <strong><%= @blog.text %></strong>
+</p>
+<% if @blog.user==current_user %>
+  <%= link_to 'Edit', edit_blog_path(@blog) %> |
+  <%= link_to 'Destroy', blog_path(@blog),
+    method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<h4>Posts</h4>
+<%= render @blog.posts %>
+
+<h3>Add a post:</h3>
+<%= render 'posts/form' %>
+
+<%= link_to 'Back', blogs_path %>
