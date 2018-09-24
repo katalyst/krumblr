@@ -26,8 +26,9 @@ class PostsController < ApplicationController
   end
 
   def require_permission
-    if current_user!=Post.find(params[:id]).user &&
-      current_user!=Post.find(params[:id]).blog.user
+    post = Post.find(params[:id])
+    if current_user!=post.user &&
+      current_user!=post.blog.user
       redirect_to root_path
     end
   end

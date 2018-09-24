@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Blog, type: :model do
-  let(:user)           { User.new(email: "test@test.com", password: "12341234") }
+  let(:user)           { User.new }
   let(:valid_params)   { {
     text: "string",
     user: user
   } }
 
   context "Creating a Blog" do
-    before do
-      user.save
-    end
+    # before do
+      # user.save
+    # end
 
     it "is valid with valid params" do
       expect(Blog.new(valid_params)).to be_valid

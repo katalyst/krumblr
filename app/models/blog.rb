@@ -4,5 +4,5 @@ class Blog < ApplicationRecord
 
   validates :text, presence: true,
                   length: { minimum: 5 }
-  validates :user_id, presence: true
+  # validates :user, presence: true
 end

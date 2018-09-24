@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 
   validates :body, presence: true,
                   length: { minimum: 1 }
-  validates :user_id, presence: true
+  # validates :user, presence: true
 
   # validates_type :body, :string
 end

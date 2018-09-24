@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user)           { User.new(email: "test@test.com", password: "12341234") }
-  let(:blog)           { Blog.new(text: "string", user: user) }
+  let(:user)           { User.new }
+  let(:blog)           { Blog.new }
   let(:valid_params)   { {
     body: "text",
     blog: blog,
@@ -10,10 +10,10 @@ RSpec.describe Post, type: :model do
   } }
 
   context "Creating a Post" do
-    before do
-      user.save
-      blog.save
-    end
+    # before do
+      # user.save
+      # blog.save
+    # end
 
     it "is valid with valid params" do
       expect(Post.new(valid_params)).to be_valid
