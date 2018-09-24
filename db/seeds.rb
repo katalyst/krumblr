@@ -15,3 +15,5 @@ b2 = Blog.create(text: "This is what I think about Rocket League...", user: u2)
 p1 = Post.create(body: "LoL is cool, I main Ahri!", blog: b1, user: u1)
 p2 = Post.create(body: "Darius is broken!", blog: b1, user: u2)
 p3 = Post.create(body: "Psyonix are a great company!", blog: b2, user: u1)
+
+l1 = Like.create(post: p1, user: u1)

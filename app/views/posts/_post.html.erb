@@ -1,4 +1,11 @@
 <p>
+  <%= post.like.all.count %></br>
+  <% if post.like.all.where(user: current_user).length===0 %>
+    <%= link_to 'Like Post', new_blog_post_like_path(post.blog, post) %>
+  <% else %>
+    <%= link_to 'Unlike post', blog_post_like_path(post.blog, post), method: :delete %>
+  <% end %>
+  </br>
   <%= post.user.try(:email) || "deleted_user" %></br>
   <%= post.body %></br>
   <% if post.user==current_user || current_user==post.blog.user %>

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :blogs do
-    resources :posts
+    resources :posts do
+      resources :likes
+    end
   end
 
   devise_for :users
