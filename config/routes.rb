@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post "repost/:id" => "posts#repost"
+
   devise_for :users
 
   root "blogs#index"

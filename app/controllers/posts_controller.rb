@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :require_permission, except: :create
+  before_action :require_permission, except: [:create, :repost]
+
+  def repost
+    Post.create(
+      blog: Blog.find(params[:blog_id]),
+      body: Post.find(params[:post_id]).body,
+      user: current_user
+    )
+    redirect_to blog_path(params[:blog_id])
+  end
 
   def create
     @blog = Blog.find(params[:blog_id])

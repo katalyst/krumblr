@@ -6,6 +6,10 @@
     <%= link_to 'Unlike post', blog_post_like_path(post.blog, post), method: :delete %>
   <% end %>
   </br>
+  <% current_user.blogs.each_with_index do |blog, index| %>
+    <%= link_to "Re-post on my #{(index+1).ordinalize} blog", {controller: "posts", action: "repost", post_id: post.id, blog_id: blog.id}, method: :post %>
+    </br>
+  <% end %>
   <%= post.user.try(:email) || "deleted_user" %></br>
   <%= post.body %></br>
   <% if post.user==current_user || current_user==post.blog.user %>
