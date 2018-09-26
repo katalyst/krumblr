@@ -4,12 +4,11 @@ class PostsController < ApplicationController
 
   def create
     @blog = Blog.find(params[:blog_id])
-    @post = Post.new({
+    @post = Post.create(
       blog: @blog,
       body: post_params[:body],
       user: current_user
-    })
-    @post.save
+    )
     redirect_to blog_path(@blog)
   end
 
