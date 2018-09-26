@@ -5,11 +5,11 @@ class LikesController < ApplicationController
     redirect_to blog_path(like_params[:blog_id])
   end
 
-  def new
-    Like.new(
+  def create
+    Like.create(
       user: current_user,
       post: Post.find(like_params[:post_id])
-    ).save
+    )
     redirect_to blog_path(like_params[:blog_id])
   end
 
