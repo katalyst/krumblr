@@ -1,6 +1,6 @@
 <p>
-  <%= post.like.all.count %></br>
-  <% if post.like.all.where(user: current_user).length===0 %>
+  <%= post.likes.all.count %></br>
+  <% if post.likes.all.where(user: current_user).none? %>
     <%= link_to 'Like Post', blog_post_likes_path(post.blog, post), method: :post %>
   <% else %>
     <%= link_to 'Unlike post', blog_post_like_path(post.blog, post), method: :delete %>
