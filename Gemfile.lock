@@ -95,7 +95,7 @@ GEM
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     puma (3.11.4)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
@@ -216,4 +216,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
